@@ -14,10 +14,14 @@ Gradle:
 Maven:
 
 ## Example
-This is a example to get a lamp
 
+This is how you can get your BridgeIPs
 ```java
 
-    //TODO CODE HERE
+      BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
+      log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
+
+      AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
+      log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
 
 ```

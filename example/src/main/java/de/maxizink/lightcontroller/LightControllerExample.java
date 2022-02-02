@@ -16,7 +16,7 @@ public class LightControllerExample {
     BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
     AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
 
-    BridgeDiscoveryExample bridgeDiscoveryExample = new BridgeDiscoveryExample(bridgeDiscovery, asyncBridgeDiscovery);
+    new BridgeDiscoveryExample(bridgeDiscovery, asyncBridgeDiscovery);
   }
 
 }
