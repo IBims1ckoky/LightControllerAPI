@@ -1,0 +1,10 @@
+# Ignore IntelliJ related stuff
+.idea
+*.iml
+/out
+/docs
+
+# Gradle related stuff
+.gradle
+/build/
+*/build/
