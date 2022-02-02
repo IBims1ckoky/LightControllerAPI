@@ -1,30 +1,23 @@
-# Multi-Module-Gradle-Project
+<a href="https://playlegend.net"><img src="assets/light-api.png" width="20%"></a>
 
-This is a **multi-module** gradle template project.
+[![LightController](https://jitpack.io/v/IBims1ckoky/LightControllerAPI.svg)](https://jitpack.io/#IBims1ckoky/LightControllerAPI)
+
+# LightControllerAPI
+
+This is an easy to use **LightControllerAPI** in for Java to control Lights from [PhillipsHue](https://www.philips-hue.com/).
 
 
-# Setup
+# How to add to Project
 
-Setup this project by cloning the repository
+Gradle:
 
-## Create new modules
+Maven:
 
-You can add new modules in the **settings.gradle.kts**. You only need to add this
-```kotlin
-include("your-module-name")
-project(":your-module-name").name = "YourCustomModuleName"
-```
-## Add module specific plugins/dependencies/repositories
+## Example
+This is a example to get a lamp
 
-By splitting a project into multiple modules you are allowed to add module-specific plugins, repositories and dependencies to provide only the information needed for each module. You are also able to create dependencies between two or more modules within the same root project using `implementation(project(":your-module-name"))`. These additions need to be made inside the **build.gradle.kts** (an example could look like this):
-```kotlin
-plugins {
-	
-}
-repositories {
-    
-}
-dependencies {
-	
-}
+```java
+
+    //TODO CODE HERE
+
 ```

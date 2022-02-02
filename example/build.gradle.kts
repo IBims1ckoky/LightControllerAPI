@@ -12,6 +12,6 @@ repositories {
 }
 
 dependencies {
-    //api(project(":LightControllerAPI-api"))
-    implementation("com.github.IBims1ckoky:LightControllerAPI:-SNAPSHOT");
+    api(project(":LightControllerAPI-api"))
+    //implementation("com.github.IBims1ckoky:LightControllerAPI:master-SNAPSHOT");
 }
