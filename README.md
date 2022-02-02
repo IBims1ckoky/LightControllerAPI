@@ -1,4 +1,4 @@
-<a href="https://playlegend.net"><img src="assets/light-api.png" width="20%"></a>
+<a href="https://playlegend.net"><img src="assets/light-api.png" width="60%"></a>
 
 [![LightController](https://jitpack.io/v/IBims1ckoky/LightControllerAPI.svg)](https://jitpack.io/#IBims1ckoky/LightControllerAPI)
 
