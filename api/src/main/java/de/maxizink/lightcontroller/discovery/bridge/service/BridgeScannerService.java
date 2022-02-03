@@ -1,6 +1,5 @@
 package de.maxizink.lightcontroller.discovery.bridge.service;
 
-import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeScanner;
 import de.maxizink.lightcontroller.discovery.bridge.response.HueBridgeCredentialsResponse;
@@ -38,7 +37,7 @@ public class BridgeScannerService implements BridgeScanner {
 
       @Override
       public void run() {
-        HueBridgeCredentialsResponse credentialsResponse = bridgeDiscovery.getAPIKey(bridgeIp);
+        HueBridgeCredentialsResponse credentialsResponse = bridgeDiscovery.generateHueBridgeCredentials(bridgeIp);
         if (credentialsResponse.getRespone().equals(HueBridgeCredentialsResponse.Respone.GENERATED)) {
           timer.cancel();
           hueBridgeConsumer.accept(credentialsResponse);
@@ -52,35 +51,6 @@ public class BridgeScannerService implements BridgeScanner {
         }
 
         currentIntervals++;
-      }
-    }, 0, 5000);
-  }
-
-  @Override
-  public void scanForHueBridgeCredentialsAsync(String bridgeIp, Consumer<HueBridgeCredentialsResponse> hueBridgeConsumer) {
-    AsyncBridgeDiscovery bridgeDiscovery = ServiceAccessor.accessService(AsyncBridgeDiscovery.class);
-    Timer timer = new Timer();
-
-    timer.schedule(new TimerTask() {
-      int currentIntervals = 0;
-
-      @Override
-      public void run() {
-       bridgeDiscovery.getAPIKeyAsync(bridgeIp).thenAccept(hueBridgeCredentialsResponse -> {
-          if (hueBridgeCredentialsResponse.getRespone().equals(HueBridgeCredentialsResponse.Respone.GENERATED)) {
-            timer.cancel();
-            hueBridgeConsumer.accept(hueBridgeCredentialsResponse);
-            return;
-          }
-
-          if (currentIntervals >= maxIntervals) {
-            timer.cancel();
-            hueBridgeConsumer.accept(hueBridgeCredentialsResponse);
-            return;
-          }
-
-          currentIntervals++;
-        });
       }
     }, 0, 5000);
   }

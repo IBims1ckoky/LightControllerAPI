@@ -2,7 +2,7 @@ package de.maxizink.lightcontroller.scanner;
 
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeScanner;
-import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeCredentials;
+import de.maxizink.lightcontroller.discovery.bridge.models.HueBridgeCredentials;
 import de.maxizink.lightcontroller.discovery.bridge.response.HueBridgeCredentialsResponse;
 import de.maxizink.lightcontroller.service.ServiceAccessor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +16,10 @@ public class BridgeScannerExample {
 
   void startScanning() {
     BridgeDiscovery bridgeDiscovery = ServiceAccessor.accessService(BridgeDiscovery.class);
-    String bridgeIp = bridgeDiscovery.getBridgeIp();
+    String bridgeIp = bridgeDiscovery.discoverBridgeIP();
 
     BridgeScanner bridgeScanner = ServiceAccessor.accessService(BridgeScanner.class);
-    bridgeScanner.scanForHueBridgeCredentialsAsync(bridgeIp, hueBridgeCredentialsResponse -> {
+    bridgeScanner.scanForHueBridgeCredentials(bridgeIp, hueBridgeCredentialsResponse -> {
       if (hueBridgeCredentialsResponse.getRespone().equals(HueBridgeCredentialsResponse.Respone.LINK_BUTTON_NOT_PRESSED)) {
         System.out.println("Link button was not pressed in the last minute");
       }

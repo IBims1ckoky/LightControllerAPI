@@ -3,6 +3,7 @@ package de.maxizink.lightcontroller;
 import de.maxizink.lightcontroller.discovery.BridgeDiscoveryExample;
 import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
+import de.maxizink.lightcontroller.scanner.BridgeScannerExample;
 import de.maxizink.lightcontroller.service.ServiceAccessor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

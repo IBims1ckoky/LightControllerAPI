@@ -3,27 +3,23 @@ package de.maxizink.lightcontroller.discovery.bridge.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import de.maxizink.lightcontroller.body.HueBridgeRequestBody;
 import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
-import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeCredentials;
-import de.maxizink.lightcontroller.discovery.bridge.body.GenerateHueBridgeBridgeBody;
 import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeIpDiscoveryException;
+import de.maxizink.lightcontroller.discovery.bridge.models.HueBridgeCredentials;
 import de.maxizink.lightcontroller.discovery.bridge.response.BridgeIpDiscoveryResponse;
 import de.maxizink.lightcontroller.discovery.bridge.response.HueBridgeCredentialsResponse;
 import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
-import de.maxizink.lightcontroller.utils.HttpUtils;
-import de.maxizink.lightcontroller.utils.HueBridgeURLUtils;
-import de.maxizink.lightcontroller.utils.JsonUtils;
 import lombok.SneakyThrows;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpUriRequest;
 
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+
+import static de.maxizink.lightcontroller.utils.HttpUtils.*;
 
 public class AsyncBridgeDiscoveryService implements AsyncBridgeDiscovery {
 
@@ -32,39 +28,40 @@ public class AsyncBridgeDiscoveryService implements AsyncBridgeDiscovery {
 
   @SneakyThrows
   @Override
-  public CompletableFuture<String> getBridgeIpAsync() {
-    HttpClient httpClient = HttpClient.newHttpClient();
-    HttpRequest httpRequest = HttpUtils.createRequest(HUE_BRIDGE_DISCOVERY_URI);
+  public CompletableFuture<String> discoveryBridgeIPAsync() {
+    return CompletableFuture.supplyAsync(() -> {
+      HttpClient httpClient = createClient();
+      HttpUriRequest httpRequest = createRequest(HUE_BRIDGE_DISCOVERY_URI);
 
-    return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
-            .thenApply(response -> {
-              BridgeIpDiscoveryResponse[] bridgeIpDiscoveryResponse = getBridges(response.body());
-              if (bridgeIpDiscoveryResponse.length <= 0) {
-                throw new HueBridgeIpDiscoveryException("No Hue Bridge was found");
-              }
-              return bridgeIpDiscoveryResponse[0].getAddress();
-            });
+      String body = executeJson(httpClient, httpRequest);
+      BridgeIpDiscoveryResponse[] bridgeIpDiscoveryResponse = getBridges(body);
+      if (bridgeIpDiscoveryResponse.length <= 0) {
+        throw new HueBridgeIpDiscoveryException("No Hue Bridge was found");
+      }
+      return bridgeIpDiscoveryResponse[0].getAddress();
+    });
   }
 
   @Override
-  public CompletableFuture<List<String>> getAllBridgeIpsAsync() {
-    HttpClient httpClient = HttpClient.newHttpClient();
-    HttpRequest httpRequest = HttpUtils.createRequest(HUE_BRIDGE_DISCOVERY_URI);
+  public CompletableFuture<List<String>> discoverAllBridgeIPsAsync() {
+    return CompletableFuture.supplyAsync(() -> {
+      HttpClient httpClient = createClient();
+      HttpUriRequest httpRequest = createRequest(HUE_BRIDGE_DISCOVERY_URI);
 
-    return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
-            .thenApply(response -> {
-              BridgeIpDiscoveryResponse[] bridgeIpDiscoveryResponse = getBridges(response.body());
-              return Arrays.stream(bridgeIpDiscoveryResponse)
-                      .map(BridgeIpDiscoveryResponse::getAddress)
-                      .collect(Collectors.toList());
-            });
+      String body = executeJson(httpClient, httpRequest);
+      BridgeIpDiscoveryResponse[] bridgeIpDiscoveryResponse = getBridges(body);
+      return Arrays.stream(bridgeIpDiscoveryResponse)
+              .map(BridgeIpDiscoveryResponse::getAddress)
+              .collect(Collectors.toList());
+    });
   }
 
   @Override
-  public CompletableFuture<HueBridgeCredentialsResponse> getAPIKeyAsync(String bridgeIp) {
+  public CompletableFuture<HueBridgeCredentialsResponse> generateHueBridgeCredentialsAsync(final String bridgeIp) {
+    /*
     HttpClient httpClient = HttpClient.newHttpClient();
     HueBridgeRequestBody hueRequestBody = GenerateHueBridgeBridgeBody.of("LightControllerAPI#2022", true);
-    HttpRequest httpRequest = HttpUtils.createPostRequest(HueBridgeURLUtils.getBridgeAPIKey(bridgeIp), hueRequestBody);
+    HttpRequest httpRequest = HttpUtils.createPostRequest(URLFormatter.getBridgeAPIKey(bridgeIp), hueRequestBody);
 
     return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
             .thenApply(response -> {
@@ -75,8 +72,12 @@ public class AsyncBridgeDiscoveryService implements AsyncBridgeDiscovery {
 
               JsonObject credentialsObject = jsonObject.getAsJsonObject("success");
               HueBridgeCredentials hueBridgeCredentials = getCredentials(credentialsObject);
+              hueBridgeCredentials.setIpAddress(bridgeIp);
               return new HueBridgeCredentialsResponse(HueBridgeCredentialsResponse.Respone.GENERATED, hueBridgeCredentials);
             });
+
+     */
+    return null;
   }
 
   @SneakyThrows
@@ -87,7 +88,7 @@ public class AsyncBridgeDiscoveryService implements AsyncBridgeDiscovery {
   private HueBridgeCredentials getCredentials(final JsonObject credentialsObject) {
     JsonElement userName = credentialsObject.get("username");
     JsonElement clientKey = credentialsObject.get("clientkey");
-    return new HueBridgeCredentials(userName.getAsString(), clientKey.getAsString());
+    return new HueBridgeCredentials(userName.getAsString(), clientKey.getAsString(), "");
   }
 
 }

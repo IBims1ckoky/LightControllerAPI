@@ -5,12 +5,14 @@ import de.maxizink.lightcontroller.service.Service;
 
 import java.util.function.Consumer;
 
+/**
+ * Will be replaced with Phillips Protocol
+ */
+@Deprecated
 public interface BridgeScanner extends Service {
 
   void setMaxIntervals(final int maxIntervals);
 
   void scanForHueBridgeCredentials(final String bridgeIp, final Consumer<HueBridgeCredentialsResponse> hueBridgeConsumer);
-
-  void scanForHueBridgeCredentialsAsync(final String bridgeIp, final Consumer<HueBridgeCredentialsResponse> hueBridgeConsumer);
 
 }

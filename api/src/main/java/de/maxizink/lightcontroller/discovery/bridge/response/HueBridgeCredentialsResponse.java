@@ -1,6 +1,6 @@
 package de.maxizink.lightcontroller.discovery.bridge.response;
 
-import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeCredentials;
+import de.maxizink.lightcontroller.discovery.bridge.models.HueBridgeCredentials;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.Nullable;

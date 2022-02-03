@@ -8,10 +8,10 @@ import java.util.concurrent.CompletableFuture;
 
 public interface AsyncBridgeDiscovery extends Service {
 
-  CompletableFuture<String> getBridgeIpAsync();
+  CompletableFuture<String> discoveryBridgeIPAsync();
 
-  CompletableFuture<List<String>> getAllBridgeIpsAsync();
+  CompletableFuture<List<String>> discoverAllBridgeIPsAsync();
 
-  CompletableFuture<HueBridgeCredentialsResponse> getAPIKeyAsync(final String bridgeIp);
+  CompletableFuture<HueBridgeCredentialsResponse> generateHueBridgeCredentialsAsync(final String bridgeIp);
 
 }
