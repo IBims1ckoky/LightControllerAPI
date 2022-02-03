@@ -3,7 +3,7 @@ package de.maxizink.lightcontroller.discovery.bridge.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
-import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeDiscoveryException;
+import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeIpDiscoveryException;
 import de.maxizink.lightcontroller.discovery.bridge.response.BridgeIpDiscoveryResponse;
 import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
 import de.maxizink.lightcontroller.utils.HttpUtils;
@@ -31,7 +31,7 @@ public class AsyncBridgeDiscoveryService implements AsyncBridgeDiscovery {
             .thenApply(response -> {
               BridgeIpDiscoveryResponse[] bridgeIpDiscoveryResponse = getBridges(response.body());
               if (bridgeIpDiscoveryResponse.length <= 0) {
-                throw new HueBridgeDiscoveryException("No Hue Bridge was found");
+                throw new HueBridgeIpDiscoveryException("No Hue Bridge was found");
               }
               return bridgeIpDiscoveryResponse[0].getAddress();
             });

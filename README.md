@@ -18,10 +18,10 @@ Maven:
 This is how you can get your BridgeIPs
 ```java
 
-      BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
-      log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
+BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
+log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
 
-      AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
-      log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
+AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
+log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
 
 ```
