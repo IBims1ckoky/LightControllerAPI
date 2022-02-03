@@ -8,11 +8,36 @@
 This is an easy to use **LightControllerAPI** in for Java to control Lights from [PhillipsHue](https://www.philips-hue.com/).
 
 
-# How to add to Project
+# How to get started
 
-Gradle:
+Gradle (Default):
+```gradle
+  repositories {
+		  maven { url 'https://jitpack.io' }
+	}
 
+	dependencies {
+	    implementation 'com.github.IBims1ckoky:LightControllerAPI:Tag'
+	}
+```
+  
 Maven:
+```maven
+  <repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+  
+  <dependencies>
+    <dependency>
+	      <groupId>com.github.IBims1ckoky</groupId>
+	      <artifactId>LightControllerAPI</artifactId>
+	      <version>master-SNAPSHOT</version>
+	  </dependency>
+  </dependencies>
+```
 
 ## Example
 
