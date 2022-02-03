@@ -39,15 +39,15 @@ Maven:
 </dependencies>
 ```
 
-## Example (Better Example + Wiki Comming Soon)
+## Visit the Wiki!
 
-This is how you can get your BridgeIPs
-```java
+### How to get started
+* [Hardware Requirements](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Hardware-Requirements)
+* [Maven & Gradle](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Maven-&-Gradle)
+* [Important Information](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Important-Information)
+### BridgeAPI
+* [BridgeIP](https://github.com/IBims1ckoky/LightControllerAPI/wiki/BridgeIP)
+* [Username & Clientkey](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Username-&-Clientkey)
+* [Bridge Informations](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Bridge-Informations)
+* [Bridge Scanner](https://github.com/IBims1ckoky/LightControllerAPI/wiki/BridgeScanner-(Credentials))
 
-BridgeDiscovery hueBridgeDiscovery = new BridgeDiscoveryService();
-log.info("Sync - SingleBridgeIP: " + hueBridgeDiscovery.getBridgeIp());
-
-AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
-log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
-
-```
