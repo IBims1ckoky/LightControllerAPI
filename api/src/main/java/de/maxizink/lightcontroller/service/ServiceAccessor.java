@@ -1,11 +1,11 @@
 package de.maxizink.lightcontroller.service;
 
-import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
-import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
-import de.maxizink.lightcontroller.discovery.bridge.api.BridgeScanner;
-import de.maxizink.lightcontroller.discovery.bridge.service.AsyncBridgeDiscoveryService;
-import de.maxizink.lightcontroller.discovery.bridge.service.BridgeDiscoveryService;
-import de.maxizink.lightcontroller.discovery.bridge.service.BridgeScannerService;
+import de.maxizink.lightcontroller.discovery.bridge.api.BridgeCredentialsDiscovery;
+import de.maxizink.lightcontroller.discovery.bridge.api.BridgeIpDiscovery;
+import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeDiscovery;
+import de.maxizink.lightcontroller.discovery.bridge.service.BridgeCredentialsDiscoveryService;
+import de.maxizink.lightcontroller.discovery.bridge.service.BridgeIpDiscoveryService;
+import de.maxizink.lightcontroller.discovery.bridge.service.HueBridgeDiscoveryService;
 import de.maxizink.lightcontroller.utils.TrustEverythingUtil;
 
 import java.util.HashMap;
@@ -18,9 +18,9 @@ public class ServiceAccessor {
   static {
     TrustEverythingUtil.trustAllSslConnectionsByDisablingCertificateVerification();
 
-    SERVICES.put(BridgeDiscovery.class, new BridgeDiscoveryService());
-    SERVICES.put(AsyncBridgeDiscovery.class, new AsyncBridgeDiscoveryService());
-    SERVICES.put(BridgeScanner.class, new BridgeScannerService());
+    SERVICES.put(BridgeIpDiscovery.class, new BridgeIpDiscoveryService());
+    SERVICES.put(BridgeCredentialsDiscovery.class, new BridgeCredentialsDiscoveryService());
+    SERVICES.put(HueBridgeDiscovery.class, new HueBridgeDiscoveryService());
   }
 
   public static <T extends Service> T accessService(final Class<T> clazz) {
