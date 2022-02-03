@@ -12,34 +12,34 @@ This is an easy to use **LightControllerAPI** in for Java to control Lights from
 
 Gradle (Default):
 ```gradle
-  repositories {
-		  maven { url 'https://jitpack.io' }
-	}
+repositories {
+   maven { url 'https://jitpack.io' }
+}
 
-	dependencies {
-	    implementation 'com.github.IBims1ckoky:LightControllerAPI:Tag'
-	}
+dependencies {
+   implementation 'com.github.IBims1ckoky:LightControllerAPI:Tag'
+}
 ```
   
 Maven:
 ```maven
-  <repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+<repositories>
+   <repository>
+     <id>jitpack.io</id>
+     <url>https://jitpack.io</url>
+   </repository>
+</repositories>
   
-  <dependencies>
-    <dependency>
-	      <groupId>com.github.IBims1ckoky</groupId>
-	      <artifactId>LightControllerAPI</artifactId>
-	      <version>master-SNAPSHOT</version>
-	  </dependency>
-  </dependencies>
+<dependencies>
+  <dependency>
+     <groupId>com.github.IBims1ckoky</groupId>
+     <artifactId>LightControllerAPI</artifactId>
+     <version>master-SNAPSHOT</version>  
+  </dependency>
+</dependencies>
 ```
 
-## Example
+## Example (Better Example + Wiki Comming Soon)
 
 This is how you can get your BridgeIPs
 ```java
