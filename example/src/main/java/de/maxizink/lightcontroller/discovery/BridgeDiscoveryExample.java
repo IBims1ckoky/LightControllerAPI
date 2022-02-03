@@ -2,6 +2,7 @@ package de.maxizink.lightcontroller.discovery;
 
 import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
+import de.maxizink.lightcontroller.service.ServiceAccessor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 public class BridgeDiscoveryExample {
 
   @SneakyThrows
-  public BridgeDiscoveryExample(final BridgeDiscovery bridgeDiscovery, final AsyncBridgeDiscovery asyncBridgeDiscovery) {
+  public BridgeDiscoveryExample() {
+    BridgeDiscovery bridgeDiscovery = ServiceAccessor.accessService(BridgeDiscovery.class);
+    AsyncBridgeDiscovery asyncBridgeDiscovery = ServiceAccessor.accessService(AsyncBridgeDiscovery.class);
+
     log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
     for (String allBridgeIp : bridgeDiscovery.getAllBridgeIps()) {
       log.info("Sync - AllBridgeIP: " + allBridgeIp);
