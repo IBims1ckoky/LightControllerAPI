@@ -2,6 +2,9 @@
 
 [![LightController](https://jitpack.io/v/IBims1ckoky/LightControllerAPI.svg)](https://jitpack.io/#IBims1ckoky/LightControllerAPI)
 [![MissingFeature](https://img.shields.io/badge/Missing%20Feature-Open%20an%20Issue-blueviolet?style=flat-square&logo=appveyor)](https://img.shields.io/badge/Missing%20Feature-Open%20an%20Issue-blueviolet?style=flat-square&logo=appveyor)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=IBims1ckoky_LightControllerAPI&metric=coverage)](https://sonarcloud.io/summary/new_code?id=IBims1ckoky_LightControllerAPI)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=IBims1ckoky_LightControllerAPI&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=IBims1ckoky_LightControllerAPI)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=IBims1ckoky_LightControllerAPI&metric=bugs)](https://sonarcloud.io/summary/new_code?id=IBims1ckoky_LightControllerAPI)    
 
 # LightControllerAPI
 
