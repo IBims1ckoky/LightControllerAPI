@@ -29,8 +29,7 @@ import java.util.stream.Collectors;
 public class BridgeDiscoveryService implements BridgeDiscovery {
 
   private static final URI HUE_BRIDGE_DISCOVERY_URI = URI.create("https://discovery.meethue.com/");
-
-  private final ObjectMapper OBJECT_MAPPER = CustomObjectMapper.create();
+  private static final ObjectMapper OBJECT_MAPPER = CustomObjectMapper.create();
 
   @SneakyThrows
   @Override
