@@ -1,8 +1,9 @@
 package de.maxizink.lightcontroller.discovery;
 
-import de.maxizink.lightcontroller.discovery.bridge.api.AsyncBridgeDiscovery;
-import de.maxizink.lightcontroller.discovery.bridge.api.BridgeDiscovery;
+import de.maxizink.lightcontroller.discovery.bridge.api.BridgeCredentialsDiscovery;
+import de.maxizink.lightcontroller.discovery.bridge.api.BridgeIpDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.HueBridge;
+import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.models.BridgeInfo;
 import de.maxizink.lightcontroller.discovery.bridge.models.HueBridgeCredentials;
 import de.maxizink.lightcontroller.discovery.bridge.response.HueBridgeCredentialsResponse;
@@ -19,35 +20,33 @@ public class BridgeDiscoveryExample {
   public BridgeDiscoveryExample() {
     //discoverBridgeIP(); //This shows all Methods to get the BridgeIP
     //createHueBridgeCredentials(); //This should create an API Key
-    // getHueBridgeFromExistingKey(); //This should create a HueBridge Class
+    //getHueBridgeFromExistingKey(); //This should create a HueBridge Class
   }
 
   /**
-   * This shows the Methods from the {@link BridgeDiscovery} and the {@link AsyncBridgeDiscovery} to
-   * get the BridgeIP(s).
+   * This shows the Methods from the {@link BridgeIpDiscovery} to get the BridgeIP(s).
    */
   @SneakyThrows
   private void discoverBridgeIP() {
-    BridgeDiscovery bridgeDiscovery = ServiceAccessor.accessService(BridgeDiscovery.class);
-    AsyncBridgeDiscovery asyncBridgeDiscovery = ServiceAccessor.accessService(AsyncBridgeDiscovery.class);
+    BridgeIpDiscovery bridgeIpDiscovery = ServiceAccessor.accessService(BridgeIpDiscovery.class);
 
-    String bridgeIp = bridgeDiscovery.discoverBridgeIP(); //Sync
-    List<String> bridgeIps = bridgeDiscovery.discoverAllBridgeIPs(); //Sync
+    String bridgeIp = bridgeIpDiscovery.discoverBridgeIP(); //Sync
+    List<String> bridgeIps = bridgeIpDiscovery.discoverAllBridgeIPs(); //Sync
 
-    String asyncBridgeIp = asyncBridgeDiscovery.discoveryBridgeIPAsync().get(); //Async
-    List<String> asyncBridgeIps = asyncBridgeDiscovery.discoverAllBridgeIPsAsync().get(); //Async
+    String asyncBridgeIp = bridgeIpDiscovery.discoveryBridgeIPAsync().get(); //Async
+    List<String> asyncBridgeIps = bridgeIpDiscovery.discoverAllBridgeIPsAsync().get(); //Async
   }
 
   /**
-   * This shows the Methods from the {@link BridgeDiscovery} to generate {@link HueBridgeCredentials} for a BridgeIP.
-   * The {@link AsyncBridgeDiscovery} has the same Methods but only async.
+   * This shows the Methods from the {@link BridgeCredentialsDiscovery} to generate{@link HueBridgeCredentials} for a BridgeIP.
    */
   @SneakyThrows
   private void createHueBridgeCredentials() {
-    BridgeDiscovery bridgeDiscovery = ServiceAccessor.accessService(BridgeDiscovery.class);
-    String bridgeIp = bridgeDiscovery.discoverBridgeIP();
+    BridgeIpDiscovery bridgeIpDiscovery = ServiceAccessor.accessService(BridgeIpDiscovery.class);
+    BridgeCredentialsDiscovery bridgeCredentialsDiscovery = ServiceAccessor.accessService(BridgeCredentialsDiscovery.class);
+    String bridgeIp = bridgeIpDiscovery.discoverBridgeIP();
 
-    HueBridgeCredentialsResponse keyGenerateResponse = bridgeDiscovery.generateHueBridgeCredentials(bridgeIp);
+    HueBridgeCredentialsResponse keyGenerateResponse = bridgeCredentialsDiscovery.generateHueBridgeCredentials(bridgeIp);
     if (keyGenerateResponse.getRespone().equals(HueBridgeCredentialsResponse.Respone.LINK_BUTTON_NOT_PRESSED)) {
       //Handle here what should happen if the link button was not pressed
       //INFO: The getCredentials() Method returns null and throws an error!
@@ -66,15 +65,18 @@ public class BridgeDiscoveryExample {
 
   @SneakyThrows
   private void getHueBridgeFromExistingKey() {
-    BridgeDiscovery bridgeDiscovery = ServiceAccessor.accessService(BridgeDiscovery.class);
-    String bridgeIp = bridgeDiscovery.discoverBridgeIP();
-    HueBridgeCredentialsResponse hueBridgeCredentials = bridgeDiscovery.generateHueBridgeCredentials(bridgeIp);
+    BridgeIpDiscovery bridgeIpDiscovery = ServiceAccessor.accessService(BridgeIpDiscovery.class);
+    BridgeCredentialsDiscovery bridgeCredentialsDiscovery = ServiceAccessor.accessService(BridgeCredentialsDiscovery.class);
+    HueBridgeDiscovery hueBridgeDiscovery = ServiceAccessor.accessService(HueBridgeDiscovery.class);
+
+    String bridgeIp = bridgeIpDiscovery.discoverBridgeIP();
+    HueBridgeCredentialsResponse hueBridgeCredentials = bridgeCredentialsDiscovery.generateHueBridgeCredentials(bridgeIp);
     if (hueBridgeCredentials.getRespone().equals(HueBridgeCredentialsResponse.Respone.LINK_BUTTON_NOT_PRESSED)) {
       // Credentials could not created
       return;
     }
 
-    HueBridge hueBridge = bridgeDiscovery.discoverHueBridge(hueBridgeCredentials.getHueBridgeCredentials());
+    HueBridge hueBridge = hueBridgeDiscovery.discoverHueBridge(hueBridgeCredentials.getHueBridgeCredentials());
     BridgeInfo bridgeInfo = hueBridge.getBridgeInfo();
     log.info("Bridge MAC-Adress: " + bridgeInfo.getMac());
   }

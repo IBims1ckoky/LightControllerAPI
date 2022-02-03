@@ -44,8 +44,8 @@ Maven:
 This is how you can get your BridgeIPs
 ```java
 
-BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
-log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
+BridgeDiscovery hueBridgeDiscovery = new BridgeDiscoveryService();
+log.info("Sync - SingleBridgeIP: " + hueBridgeDiscovery.getBridgeIp());
 
 AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
 log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
