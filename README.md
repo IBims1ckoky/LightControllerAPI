@@ -1,6 +1,7 @@
 <a href="https://playlegend.net"><img src="assets/light-api.png" width="100%"></a>
 
 [![LightController](https://jitpack.io/v/IBims1ckoky/LightControllerAPI.svg)](https://jitpack.io/#IBims1ckoky/LightControllerAPI)
+[![MissingFeature](https://img.shields.io/badge/Missing%20Feature-Open%20an%20Issue-blueviolet?style=flat-square&logo=appveyor)](https://img.shields.io/badge/Missing%20Feature-Open%20an%20Issue-blueviolet?style=flat-square&logo=appveyor)
 
 # LightControllerAPI
 
