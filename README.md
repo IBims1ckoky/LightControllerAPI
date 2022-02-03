@@ -1,6 +1,7 @@
-<a href="https://playlegend.net"><img src="assets/light-api.png" width="60%"></a>
+<a href="https://playlegend.net"><img src="assets/light-api.png" width="100%"></a>
 
 [![LightController](https://jitpack.io/v/IBims1ckoky/LightControllerAPI.svg)](https://jitpack.io/#IBims1ckoky/LightControllerAPI)
+[![MissingFeature](https://img.shields.io/badge/Missing%20Feature-Open%20an%20Issue-blueviolet?style=flat-square&logo=appveyor)](https://img.shields.io/badge/Missing%20Feature-Open%20an%20Issue-blueviolet?style=flat-square&logo=appveyor)
 
 # LightControllerAPI
 
@@ -18,10 +19,10 @@ Maven:
 This is how you can get your BridgeIPs
 ```java
 
-      BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
-      log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
+BridgeDiscovery bridgeDiscovery = new BridgeDiscoveryService();
+log.info("Sync - SingleBridgeIP: " + bridgeDiscovery.getBridgeIp());
 
-      AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
-      log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
+AsyncBridgeDiscovery asyncBridgeDiscovery = new AsyncBridgeDiscoveryService();
+log.info("Async - BridgeIP: " + asyncBridgeDiscovery.getBridgeIp().get());
 
 ```

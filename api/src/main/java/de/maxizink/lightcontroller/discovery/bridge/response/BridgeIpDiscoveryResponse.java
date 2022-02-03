@@ -11,10 +11,6 @@ public class BridgeIpDiscoveryResponse {
   private String internalipaddress;
   private int port;
 
-  public int getPort() {
-    return port;
-  }
-
   public String getAddress() {
     return internalipaddress;
   }
