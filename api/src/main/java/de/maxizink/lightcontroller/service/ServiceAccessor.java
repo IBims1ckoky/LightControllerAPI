@@ -6,6 +6,7 @@ import de.maxizink.lightcontroller.discovery.bridge.api.BridgeScanner;
 import de.maxizink.lightcontroller.discovery.bridge.service.AsyncBridgeDiscoveryService;
 import de.maxizink.lightcontroller.discovery.bridge.service.BridgeDiscoveryService;
 import de.maxizink.lightcontroller.discovery.bridge.service.BridgeScannerService;
+import de.maxizink.lightcontroller.utils.TrustEverythingUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,8 @@ public class ServiceAccessor {
   private static final Map<Class<? extends Service>, Service> SERVICES = new HashMap<>();
 
   static {
+    TrustEverythingUtil.trustAllSslConnectionsByDisablingCertificateVerification();
+
     SERVICES.put(BridgeDiscovery.class, new BridgeDiscoveryService());
     SERVICES.put(AsyncBridgeDiscovery.class, new AsyncBridgeDiscoveryService());
     SERVICES.put(BridgeScanner.class, new BridgeScannerService());
