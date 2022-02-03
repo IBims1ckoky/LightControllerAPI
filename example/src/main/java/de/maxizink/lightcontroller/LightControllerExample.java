@@ -18,6 +18,9 @@ public class LightControllerExample {
 
     //Run all Examples
     new BridgeDiscoveryExample();
+
+    //This Example where not executed by default because it scans one minute
+    //new BridgeScannerExample();
   }
 
 }
