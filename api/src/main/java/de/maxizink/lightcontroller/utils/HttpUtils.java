@@ -1,7 +1,8 @@
 package de.maxizink.lightcontroller.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.maxizink.lightcontroller.body.HueBridgeRequestBody;
+import de.maxizink.lightcontroller.body.HueRequestBody;
+import de.maxizink.lightcontroller.discovery.bridge.models.HueBridgeCredentials;
 import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
 import lombok.SneakyThrows;
 import org.apache.http.Header;
@@ -12,6 +13,7 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
 import java.net.URI;
@@ -19,6 +21,10 @@ import java.net.URI;
 public class HttpUtils {
 
   private static final ObjectMapper OBJECT_MAPPER = CustomObjectMapper.create();
+
+  public static Header createCredentialHeader(final HueBridgeCredentials hueBridgeCredentials) {
+    return new BasicHeader("hue-application-key", hueBridgeCredentials.getUserName());
+  }
 
   @SneakyThrows
   public static String executeJson(final HttpClient httpClient, final HttpUriRequest httpRequest) {
@@ -50,7 +56,7 @@ public class HttpUtils {
 
 
   @SneakyThrows
-  public static HttpUriRequest createPostRequest(final URI uri, final HueBridgeRequestBody hueRequestBody) {
+  public static HttpUriRequest createPostRequest(final URI uri, final HueRequestBody hueRequestBody) {
     return RequestBuilder.post()
             .setUri(uri)
             .setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(hueRequestBody)))
@@ -58,12 +64,30 @@ public class HttpUtils {
   }
 
   @SneakyThrows
-  public static HttpUriRequest createPostRequest(final URI uri, final HueBridgeRequestBody hueRequestBody,
-                                                 final String key, final String value) {
-    return RequestBuilder.post()
+  public static HttpUriRequest createPostRequest(final URI uri, final HueRequestBody hueRequestBody,
+                                                 final Header... headers) {
+    RequestBuilder requestBuilder = RequestBuilder.post()
             .setUri(uri)
-            .setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(hueRequestBody)))
-            .addHeader(key, value)
-            .build();
+            .setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(hueRequestBody)));
+
+    for (Header header : headers) {
+      requestBuilder.addHeader(header);
+    }
+
+    return requestBuilder.build();
+  }
+
+  @SneakyThrows
+  public static HttpUriRequest createPutRequest(final URI uri, final HueRequestBody hueRequestBody,
+                                                final Header... headers) {
+    RequestBuilder requestBuilder = RequestBuilder.put()
+            .setUri(uri)
+            .setEntity(new StringEntity(OBJECT_MAPPER.writeValueAsString(hueRequestBody)));
+
+    for (Header header : headers) {
+      requestBuilder.addHeader(header);
+    }
+
+    return requestBuilder.build();
   }
 }

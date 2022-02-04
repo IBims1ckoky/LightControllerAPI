@@ -6,7 +6,6 @@ import de.maxizink.lightcontroller.service.Service;
 
 public interface HueBridgeDiscovery extends Service {
 
-
   HueBridge discoverHueBridge(final HueBridgeCredentials hueBridgeCredentials);
 
 }

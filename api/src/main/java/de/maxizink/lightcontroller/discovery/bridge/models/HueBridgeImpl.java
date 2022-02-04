@@ -6,7 +6,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import de.maxizink.lightcontroller.discovery.bridge.api.HueBridge;
 import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeInformationDiscoveryException;
+import de.maxizink.lightcontroller.discovery.lamp.api.HueLamp;
+import de.maxizink.lightcontroller.discovery.lamp.api.HueLampDiscovery;
 import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
+import de.maxizink.lightcontroller.service.ServiceAccessor;
 import de.maxizink.lightcontroller.utils.HttpUtils;
 import de.maxizink.lightcontroller.utils.URLFormatter;
 import lombok.Getter;
@@ -17,6 +20,8 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.message.BasicHeader;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 @Getter
 public class HueBridgeImpl implements HueBridge {
@@ -46,7 +51,7 @@ public class HueBridgeImpl implements HueBridge {
     HttpClient httpClient = HttpUtils.createClient();
     HttpUriRequest httpUriRequest = HttpUtils.createRequest(URI.create(dataUri),
             new BasicHeader(HttpHeaders.HOST, this.hueBridgeCredentials.getIpAddress()),
-            new BasicHeader("hue-application-key", this.hueBridgeCredentials.getUserName())
+            HttpUtils.createCredentialHeader(hueBridgeCredentials)
     );
 
     String json = HttpUtils.executeJson(httpClient, httpUriRequest);
@@ -63,4 +68,16 @@ public class HueBridgeImpl implements HueBridge {
   }
 
 
+  @Override
+  public List<HueLamp> getLamps() {
+    HueLampDiscovery hueLampDiscovery = ServiceAccessor.accessService(HueLampDiscovery.class);
+    return hueLampDiscovery.discoverAllLamps(this);
+  }
+
+  @Override
+  public Optional<HueLamp> getLampByName(final String name) {
+    return getLamps().stream()
+            .filter(hueLamp -> hueLamp.getName().equalsIgnoreCase(name))
+            .findFirst();
+  }
 }

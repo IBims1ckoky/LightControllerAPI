@@ -1,6 +1,7 @@
 package de.maxizink.lightcontroller;
 
 import de.maxizink.lightcontroller.discovery.BridgeDiscoveryExample;
+import de.maxizink.lightcontroller.discovery.LampDiscoveryExample;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeCredentialsDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeIpDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeDiscovery;
@@ -20,5 +21,6 @@ public class LightControllerExample {
 
     //Run all Examples
     new BridgeDiscoveryExample();
+    new LampDiscoveryExample();
   }
 }

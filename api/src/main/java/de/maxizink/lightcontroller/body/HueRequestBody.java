@@ -1,5 +1,5 @@
 package de.maxizink.lightcontroller.body;
 
-public interface HueBridgeRequestBody {
+public interface HueRequestBody {
 
 }

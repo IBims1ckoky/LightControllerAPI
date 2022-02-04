@@ -11,4 +11,8 @@ public class JsonUtils {
     return jsonArray.get(0).getAsJsonObject();
   }
 
+  public static JsonObject fromJson(final String responseBody) {
+    return JsonParser.parseString(responseBody).getAsJsonObject();
+  }
+
 }
