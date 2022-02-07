@@ -7,7 +7,7 @@ import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.models.BridgeInfo;
 import de.maxizink.lightcontroller.discovery.bridge.models.HueBridgeCredentials;
 import de.maxizink.lightcontroller.discovery.bridge.response.HueBridgeCredentialsResponse;
-import de.maxizink.lightcontroller.service.ServiceAccessor;
+import de.maxizink.lightcontroller.injection.ServiceAccessor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 

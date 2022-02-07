@@ -7,7 +7,7 @@ import de.maxizink.lightcontroller.discovery.lamp.api.HueLamp;
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLampDiscovery;
 import de.maxizink.lightcontroller.discovery.lamp.model.HueColor;
 import de.maxizink.lightcontroller.discovery.lamp.model.LampUpdateType;
-import de.maxizink.lightcontroller.service.ServiceAccessor;
+import de.maxizink.lightcontroller.injection.ServiceAccessor;
 import lombok.SneakyThrows;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class LampDiscoveryExample {
     HueLampDiscovery hueLampDiscovery = ServiceAccessor.accessService(HueLampDiscovery.class);
 
     HueBridgeCredentials hueBridgeCredentials = new HueBridgeCredentials(
-            "userName", // This is for testing hard coded
-            "clientKey", // This for testing hard coded
+            "name",
+            "key",
             "192.168.2.124"
     );
 

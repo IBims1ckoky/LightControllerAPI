@@ -1,11 +1,9 @@
 package de.maxizink.lightcontroller;
 
-import de.maxizink.lightcontroller.discovery.BridgeDiscoveryExample;
-import de.maxizink.lightcontroller.discovery.LampDiscoveryExample;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeCredentialsDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.BridgeIpDiscovery;
 import de.maxizink.lightcontroller.discovery.bridge.api.HueBridgeDiscovery;
-import de.maxizink.lightcontroller.service.ServiceAccessor;
+import de.maxizink.lightcontroller.injection.ServiceAccessor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 

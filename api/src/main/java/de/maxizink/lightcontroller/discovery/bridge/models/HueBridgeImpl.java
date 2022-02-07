@@ -9,7 +9,7 @@ import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeInformati
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLamp;
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLampDiscovery;
 import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
-import de.maxizink.lightcontroller.service.ServiceAccessor;
+import de.maxizink.lightcontroller.injection.ServiceAccessor;
 import de.maxizink.lightcontroller.utils.HttpUtils;
 import de.maxizink.lightcontroller.utils.URLFormatter;
 import lombok.Getter;

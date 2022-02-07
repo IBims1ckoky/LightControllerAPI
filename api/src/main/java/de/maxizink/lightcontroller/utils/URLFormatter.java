@@ -27,4 +27,8 @@ public class URLFormatter {
     return new URI("https://" + bridgeIp + "/clip/v2/resource/light/" + id.toString());
   }
 
+  @SneakyThrows
+  public static URI getAllRooms(final String bridgeIp) {
+    return new URI("https://" + bridgeIp + "/clip/v2/resource/room");
+  }
 }

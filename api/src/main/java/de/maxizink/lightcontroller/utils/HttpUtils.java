@@ -27,6 +27,11 @@ public class HttpUtils {
   }
 
   @SneakyThrows
+  public static String executeJson(final HttpUriRequest httpRequest) {
+    return executeJson(createClient(), httpRequest);
+  }
+
+  @SneakyThrows
   public static String executeJson(final HttpClient httpClient, final HttpUriRequest httpRequest) {
     HttpResponse httpResponse = httpClient.execute(httpRequest);
     return EntityUtils.toString(httpResponse.getEntity());

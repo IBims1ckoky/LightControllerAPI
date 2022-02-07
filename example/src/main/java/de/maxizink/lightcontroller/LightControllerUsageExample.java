@@ -9,7 +9,7 @@ import de.maxizink.lightcontroller.discovery.bridge.response.HueBridgeCredential
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLamp;
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLampDiscovery;
 import de.maxizink.lightcontroller.discovery.lamp.model.LampUpdateType;
-import de.maxizink.lightcontroller.service.ServiceAccessor;
+import de.maxizink.lightcontroller.injection.ServiceAccessor;
 
 import java.util.List;
 
@@ -40,8 +40,8 @@ public class LightControllerUsageExample {
     BridgeCredentialsDiscovery bridgeCredentialsDiscovery = ServiceAccessor.accessService(BridgeCredentialsDiscovery.class);
 
     HueBridgeCredentials hueBridgeCredentials = new HueBridgeCredentials(
-            "userName", // This is for testing hard coded
-            "clientKey", // This for testing hard coded
+            "ixFWtIB--hLGkv5m7t1Xksstvpt1mmzxTXQbiWVL", // This is for testing hard coded
+            "87D82277C67FE7FD1059809616B640BF", // This for testing hard coded
             bridgeIp
     );
 

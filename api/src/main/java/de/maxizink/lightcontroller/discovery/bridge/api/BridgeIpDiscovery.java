@@ -1,7 +1,7 @@
 package de.maxizink.lightcontroller.discovery.bridge.api;
 
 import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeIpDiscoveryException;
-import de.maxizink.lightcontroller.service.Service;
+import de.maxizink.lightcontroller.injection.Service;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
