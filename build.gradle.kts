@@ -15,7 +15,7 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.projectlombok:lombok:1.18.20")
+        compileOnly("org.projectlombok:lombok:1.18.22")
         annotationProcessor("org.projectlombok:lombok:1.18.20")
         implementation("org.jetbrains:annotations:16.0.2")
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
