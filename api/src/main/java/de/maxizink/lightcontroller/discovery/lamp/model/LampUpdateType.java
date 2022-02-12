@@ -8,8 +8,6 @@ import de.maxizink.lightcontroller.discovery.lamp.update.EnabledLampUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.awt.*;
-
 @AllArgsConstructor
 @Getter
 public final class LampUpdateType<T> {

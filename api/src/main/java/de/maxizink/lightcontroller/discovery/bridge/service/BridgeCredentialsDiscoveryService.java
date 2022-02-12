@@ -25,7 +25,7 @@ public class BridgeCredentialsDiscoveryService implements BridgeCredentialsDisco
   @Override
   public HueBridgeCredentialsResponse generateHueBridgeCredentials(final String bridgeIp) {
     HttpClient httpClient = HttpUtils.createClient();
-    HueRequestBody hueRequestBody = GenerateHueBridgeBody.of("LightControllerAPI#2022", true);
+    HueRequestBody hueRequestBody = GenerateHueBridgeBody.of("LightControllerAPI#2022", true); //TODO user should set the Application Name (devicetype)
     HttpUriRequest httpUriRequest = HttpUtils.createPostRequest(URLFormatter.getBridgeAPIKey(bridgeIp), hueRequestBody);
 
     String body = HttpUtils.executeJson(httpClient, httpUriRequest);

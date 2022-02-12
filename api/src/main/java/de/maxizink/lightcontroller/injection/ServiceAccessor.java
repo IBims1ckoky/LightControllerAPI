@@ -8,6 +8,8 @@ import de.maxizink.lightcontroller.discovery.bridge.service.BridgeIpDiscoverySer
 import de.maxizink.lightcontroller.discovery.bridge.service.HueBridgeDiscoveryService;
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLampDiscovery;
 import de.maxizink.lightcontroller.discovery.lamp.service.HueLampDiscoveryService;
+import de.maxizink.lightcontroller.discovery.room.api.HueRoomDiscovery;
+import de.maxizink.lightcontroller.discovery.room.service.HueRoomDiscoveryService;
 import de.maxizink.lightcontroller.utils.TrustEverythingUtil;
 
 import java.util.HashMap;
@@ -24,6 +26,7 @@ public class ServiceAccessor {
     SERVICES.put(BridgeCredentialsDiscovery.class, new BridgeCredentialsDiscoveryService());
     SERVICES.put(HueBridgeDiscovery.class, new HueBridgeDiscoveryService());
     SERVICES.put(HueLampDiscovery.class, new HueLampDiscoveryService());
+    SERVICES.put(HueRoomDiscovery.class, new HueRoomDiscoveryService());
   }
 
   public static <T extends Service> T accessService(final Class<T> clazz) {

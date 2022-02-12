@@ -12,5 +12,4 @@ public class HueResponseValidator {
     JsonArray errorArray = jsonObject.getAsJsonArray("errors");
     return errorArray.size() >= 1;
   }
-
 }

@@ -15,15 +15,34 @@ import org.apache.http.client.methods.HttpUriRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
-import static de.maxizink.lightcontroller.utils.HttpUtils.createRequest;
-import static de.maxizink.lightcontroller.utils.HttpUtils.executeJson;
+import static de.maxizink.lightcontroller.utils.HttpUtils.*;
 
 public class HueRoomDiscoveryService implements HueRoomDiscovery {
 
   @Override
+  public Optional<HueRoom> getHueRoomById(final HueBridge hueBridge, final UUID uniqueId) {
+    return discoverAllRooms(hueBridge).stream()
+            .filter(hueRoom -> hueRoom.getId().equals(uniqueId))
+            .findFirst();
+  }
+
+  @Override
+  public Optional<HueRoom> getHueRoomByName(final HueBridge hueBridge, final String name) {
+    return discoverAllRooms(hueBridge).stream()
+            .filter(hueRoom -> hueRoom.getName().equals(name))
+            .findFirst();
+  }
+
+  @Override
   public List<HueRoom> discoverAllRooms(final HueBridge hueBridge) {
-    HttpUriRequest httpRequest = createRequest(URLFormatter.getAllRooms(hueBridge.getHueBridgeCredentials().getIpAddress()));
+    HttpUriRequest httpRequest = createRequest(URLFormatter.getAllRooms(hueBridge.getHueBridgeCredentials().getIpAddress()),
+            createCredentialHeader(hueBridge.getHueBridgeCredentials()));
+
+    String json = executeJson(httpRequest);
+
     JsonObject dataObject = JsonUtils.fromJson(executeJson(httpRequest));
     if (HueResponseValidator.hasErrors(dataObject)) {
       throw new HueRoomDiscoveryException("Error while discover Rooms");

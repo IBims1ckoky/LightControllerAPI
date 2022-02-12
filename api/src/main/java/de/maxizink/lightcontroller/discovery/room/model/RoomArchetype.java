@@ -44,7 +44,7 @@ public enum RoomArchetype {
   OTHER;
 
   public static RoomArchetype getRoomArchetype(final String string) {
-    return valueOf(string.toLowerCase());
+    return valueOf(string.toUpperCase());
   }
 
   }

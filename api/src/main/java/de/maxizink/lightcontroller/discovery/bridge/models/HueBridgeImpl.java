@@ -8,8 +8,10 @@ import de.maxizink.lightcontroller.discovery.bridge.api.HueBridge;
 import de.maxizink.lightcontroller.discovery.bridge.exception.HueBridgeInformationDiscoveryException;
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLamp;
 import de.maxizink.lightcontroller.discovery.lamp.api.HueLampDiscovery;
-import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
+import de.maxizink.lightcontroller.discovery.room.api.HueRoom;
+import de.maxizink.lightcontroller.discovery.room.api.HueRoomDiscovery;
 import de.maxizink.lightcontroller.injection.ServiceAccessor;
+import de.maxizink.lightcontroller.mapper.CustomObjectMapper;
 import de.maxizink.lightcontroller.utils.HttpUtils;
 import de.maxizink.lightcontroller.utils.URLFormatter;
 import lombok.Getter;
@@ -22,6 +24,7 @@ import org.apache.http.message.BasicHeader;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Getter
 public class HueBridgeImpl implements HueBridge {
@@ -75,9 +78,36 @@ public class HueBridgeImpl implements HueBridge {
   }
 
   @Override
+  public Optional<HueLamp> getLampById(final UUID uniqueId) {
+    return getLamps().stream()
+            .filter(hueLamp -> hueLamp.getId().equals(uniqueId))
+            .findFirst();
+  }
+
+  @Override
   public Optional<HueLamp> getLampByName(final String name) {
     return getLamps().stream()
             .filter(hueLamp -> hueLamp.getName().equalsIgnoreCase(name))
+            .findFirst();
+  }
+
+  @Override
+  public List<HueRoom> getRooms() {
+    HueRoomDiscovery hueLampDiscovery = ServiceAccessor.accessService(HueRoomDiscovery.class);
+    return hueLampDiscovery.discoverAllRooms(this);
+  }
+
+  @Override
+  public Optional<HueRoom> getHueRoomById(final UUID uniqueId) {
+    return getRooms().stream()
+            .filter(hueRoom -> hueRoom.getId().equals(uniqueId))
+            .findFirst();
+  }
+
+  @Override
+  public Optional<HueRoom> getHueRoomByName(final String name) {
+    return getRooms().stream()
+            .filter(hueRoom -> hueRoom.getName().equals(name))
             .findFirst();
   }
 }
