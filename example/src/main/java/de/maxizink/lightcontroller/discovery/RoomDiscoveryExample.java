@@ -11,11 +11,42 @@ import de.maxizink.lightcontroller.injection.ServiceAccessor;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class RoomDiscoveryExample {
 
   public RoomDiscoveryExample() {
     discoverAllRooms();
+  }
+
+  private void getHueRooms(final HueBridge hueBridge) {
+    HueRoomDiscovery hueRoomDiscovery = ServiceAccessor.accessService(HueRoomDiscovery.class);
+
+    List<HueRoom> rooms = hueBridge.getRooms();
+    List<HueRoom> roomsByService = hueRoomDiscovery.discoverAllRooms(hueBridge); //Does exactly the same
+  }
+
+  private void updateRooms(final HueBridge hueBridge) {
+    HueRoomDiscovery hueRoomDiscovery = ServiceAccessor.accessService(HueRoomDiscovery.class);
+
+    Optional<HueRoom> hueRoomByName = hueBridge.getHueRoomByName("Room");
+    hueRoomByName.ifPresent(hueRoom -> {
+      hueRoom.turnOn();
+
+      hueRoom.updateRoomLamps(LampUpdateType.COLOR, Color.RED);
+      hueRoom.updateRoomLamps(LampUpdateType.BRIGHTNESS, 50);
+    });
+  }
+
+  private void getHueRoomByName(final HueBridge hueBridge) {
+    HueRoomDiscovery hueRoomDiscovery = ServiceAccessor.accessService(HueRoomDiscovery.class);
+
+    Optional<HueRoom> hueRoomByName = hueBridge.getHueRoomByName("Room");
+    Optional<HueRoom> hueRoomByNameByService = hueRoomDiscovery.getHueRoomByName(hueBridge, "Room");
+
+    Optional<HueRoom> hueRoomById = hueBridge.getHueRoomById(UUID.randomUUID());
+    Optional<HueRoom> hueRoomByIdByService = hueRoomDiscovery.getHueRoomById(hueBridge, UUID.randomUUID());
   }
 
   private void discoverAllRooms() {
