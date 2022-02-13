@@ -42,17 +42,20 @@ Maven:
 ## Visit the Wiki!
 
 ### How to get started
-* [Hardware Requirements](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Hardware-Requirements)
-* [Maven & Gradle](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Maven-&-Gradle)
-* [Important Information](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Important-Information)
+  * [Hardware Requirements](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Hardware-Requirements)
+  * [Maven & Gradle](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Maven-&-Gradle)
+  * [Important Information](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Important-Information)
 ### BridgeAPI
-* [BridgeIP](https://github.com/IBims1ckoky/LightControllerAPI/wiki/BridgeIP)
-* [Username & Clientkey](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Username-&-Clientkey)
-* [Bridge Informations](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Bridge-Informations)
-* [Bridge Scanner](https://github.com/IBims1ckoky/LightControllerAPI/wiki/BridgeScanner-(Credentials))
+  * [BridgeIP](https://github.com/IBims1ckoky/LightControllerAPI/wiki/BridgeIP)
+  * [Username & Clientkey](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Username-&-Clientkey)
+  * [Bridge Informations](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Bridge-Informations)
 ### LampAPI
-* [Get All Lamps](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Get-All-Lamps)
-* [Lamp by Name](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Lamp-by-Name)
-* [Lamp Brightness](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Lamp-Brightness)
-* [Turn Lamps On & Off](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Turn-Lamps-On-&-Off)
-* [Other Updates]()
+  * [Get All Lamps](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Get-All-Lamps)
+  * [Lamp by Name](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Lamp-by-Name)
+  * [Lamp Brightness](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Lamp-Brightness)
+  * [Turn Lamps On & Off](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Turn-Lamps-On-&-Off)
+  * [Other Updates](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Other-Lamp-Updates)
+### RoomAPI
+  * [Get All Rooms](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Get-All-Rooms)
+  * [Get Room by Name or ID](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Get-Rooms-by-Name)
+  * [Updating Rooms](https://github.com/IBims1ckoky/LightControllerAPI/wiki/Updating-Rooms)
