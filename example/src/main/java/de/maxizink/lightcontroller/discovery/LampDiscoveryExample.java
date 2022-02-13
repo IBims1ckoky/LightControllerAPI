@@ -10,6 +10,7 @@ import de.maxizink.lightcontroller.discovery.lamp.model.LampUpdateType;
 import de.maxizink.lightcontroller.injection.ServiceAccessor;
 import lombok.SneakyThrows;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class LampDiscoveryExample {
     HueBridgeCredentials hueBridgeCredentials = new HueBridgeCredentials(
             "name",
             "key",
-            "192.168.2.124"
+            ""
     );
 
     HueBridge hueBridge = hueBridgeDiscovery.discoverHueBridge(hueBridgeCredentials);
@@ -46,7 +47,7 @@ public class LampDiscoveryExample {
 
   private void updateLamp(final HueBridge hueBridge) {
     HueLamp hueLamp = hueBridge.getLampByName("Max Bett").get();
-    hueLamp.updateSync(LampUpdateType.COLOR, HueColor.ORANGE);
+    hueLamp.updateSync(LampUpdateType.COLOR, Color.ORANGE);
     hueLamp.updateSync(LampUpdateType.BRIGHTNESS, 100);
     hueLamp.updateSync(LampUpdateType.COLOR_TEMPERATURE, 500);
     hueLamp.updateAsync(LampUpdateType.ENABLE, true).join();
