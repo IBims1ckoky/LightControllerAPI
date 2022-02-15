@@ -17,6 +17,10 @@ plugins {
     id("signing")
 }
 
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
 tasks.compileJava {
     sourceCompatibility = "17"
     targetCompatibility = "17"

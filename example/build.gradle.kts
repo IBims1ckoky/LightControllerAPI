@@ -15,3 +15,12 @@ dependencies {
     api(project(":LightControllerAPI-api"))
     //implementation("com.github.IBims1ckoky:LightControllerAPI:master-SNAPSHOT");
 }
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
+tasks.compileJava {
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
+}
