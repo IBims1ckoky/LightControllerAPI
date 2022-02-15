@@ -1,7 +1,6 @@
 package io.github.ibims1ckoky.lightcontroller.discovery.lamp.api;
 
 import io.github.ibims1ckoky.lightcontroller.discovery.bridge.api.HueBridge;
-import de.maxizink.lightcontroller.discovery.lamp.model.*;
 import io.github.ibims1ckoky.lightcontroller.discovery.lamp.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
