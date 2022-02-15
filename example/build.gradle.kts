@@ -1,4 +1,4 @@
-group = "de.maxizink"
+group = "io.github.ibims1ckoky"
 version = "1.0-SNAPSHOT"
 
 description = "LightController-example"

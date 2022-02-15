@@ -32,7 +32,7 @@ Maven:
   
 <dependencies>
   <dependency>
-     <groupId>com.github.IBims1ckoky</groupId>
+     <groupId>io.github.ibims1ckoky</groupId>
      <artifactId>LightControllerAPI</artifactId>
      <version>master-SNAPSHOT</version>  
   </dependency>

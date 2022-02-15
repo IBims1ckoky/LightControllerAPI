@@ -3,7 +3,7 @@ plugins {
     id("org.sonarqube") version "3.3"
 }
 
-group = "de.maxizink"
+group = "io.github.ibims1ckoky"
 version = "1.0-SNAPSHOT"
 
 subprojects {
