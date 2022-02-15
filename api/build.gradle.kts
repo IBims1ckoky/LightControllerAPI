@@ -38,7 +38,7 @@ signing {
 
 publishing {
     publications {
-        withType<MavenPublication> {
+        create<MavenPublication>("maven")  {
             pom {
                 name.set("LightControllerAPI")
                 description.set("API to control lights from PhillipsHUE with java")
@@ -61,6 +61,25 @@ publishing {
                     developer {
                         name.set("Maxi Zink")
                         email.set("business.maxi.zink@gmail.com")
+                    }
+                }
+            }
+
+            artifact(tasks["shadowJar"])
+
+            pom.withXml {
+                val dependenciesNode = asNode().appendNode("dependencies");
+                configurations.filter {
+                    it.name == "api" || it.name == "implementation"
+                }.forEach { configuration ->
+                    configuration.dependencies.forEach { dependency ->
+                        if (dependency !is SelfResolvingDependency || dependency is ProjectDependency) {
+                            val dependencyNode = dependenciesNode.appendNode("dependency")
+                            dependencyNode.appendNode("groupId", dependency.group)
+                            dependencyNode.appendNode("artifactId", dependency.name.toLowerCase())
+                            dependencyNode.appendNode("version", dependency.version)
+                            dependencyNode.appendNode("scope", configuration.name)
+                        }
                     }
                 }
             }
