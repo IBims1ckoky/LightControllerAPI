@@ -8,3 +8,4 @@
 .gradle
 /build/
 */build/
+gradle.properties
