@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    id("org.sonarqube") version "3.3"
+    id("org.sonarqube") version "3.4.0.2513"
 }
 
 group = "io.github.ibims1ckoky"
