@@ -16,7 +16,7 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Publish package
-        uses: gradle/gradle-build-action@bf2a15ee94874758c21b91220b4d0ab84f762423
+        uses: gradle/gradle-build-action@cd579d970f8aec1cf0cae5f62a8e418768970015
         with:
           arguments: publish
         env:
