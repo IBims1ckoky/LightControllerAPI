@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
     implementation("io.reactivex.rxjava3:rxjava:3.1.5")
     implementation("com.google.code.gson:gson:2.10")
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
