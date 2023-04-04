@@ -18,7 +18,7 @@ subprojects {
         compileOnly("org.projectlombok:lombok:1.18.24")
         annotationProcessor("org.projectlombok:lombok:1.18.24")
         implementation("org.jetbrains:annotations:24.0.1")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     }
 }
