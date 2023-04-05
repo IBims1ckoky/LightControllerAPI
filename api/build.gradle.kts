@@ -37,7 +37,7 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
 
     api("ch.qos.logback:logback-core:1.4.5")
-    api("ch.qos.logback:logback-classic:1.4.5")
+    api("ch.qos.logback:logback-classic:1.4.6")
 }
 
 signing {
